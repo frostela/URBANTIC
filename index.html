@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URBANTIC | Home Page</title>
     <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    
+    <header>
+        <nav>
+            <ul>
+                <a>Home</a>
+                <a>Properties</a>
+                <a>About</a>
+                <a>Contact</a>
+            </ul>
+
+            <a class="logo" href="#">URBANTIC</a>
+            <a class="main-button" href="#">Get Property List</a>
+        </nav>
+    </header>
+    <main>
+        <section id="hero-section">
+            <img id="hero-img" src="./contents/img/building-img.png" alt="Hero-Img">
+            <div class="cta">
+                <h1>Urbantic Buildings</h1>
+                <p>Buy or rent premium flats in Kolkata at the right price,<br>with trusted local guidance and verified
+                    listings.</p>
+                <div class="location">
+                    <img src="/contents/img/location-icon.png" alt="Location">
+                    <p>Kolkata</p>
+                </div>
+                <a class="main-button" href="#">Get Property List</a>
+            </div>
+        </section>
+
+        <section id="marquee-section">
+            <div class="container">
+                <div class="scroll-wrapper">
+                    <div class="orb">Transparent Pricing</div>
+                    <div class="img-div"><img src="/contents/img/mar-img1.png" alt="Marquee immg 1"></div>
+                    <div class="orb">Ready-to-Move Homes</div>
+                    <div class="img-div"><img src="/contents/img/mar-img2.png" alt="Marquee immg 2"></div>
+                    <div class="orb">No Hidden Charges</div>
+                    <div class="img-div"><img src="/contents/img/mar-img3.png" alt="Marquee immg 3"></div>
+                </div>
+                <div class="scroll-wrapper">
+                    <div class="orb">Transparent Pricing</div>
+                    <div class="img-div"><img src="/contents/img/mar-img1.png" alt="Marquee immg 1"></div>
+                    <div class="orb">Ready-to-Move Homes</div>
+                    <div class="img-div"><img src="/contents/img/mar-img2.png" alt="Marquee immg 2"></div>
+                    <div class="orb">No Hidden Charges</div>
+                    <div class="img-div"><img src="/contents/img/mar-img3.png" alt="Marquee immg 3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured-properties">
+            <div class="heading">
+                <h1 class="sec-heading">Featured Properties</h1>
+                <a class="main-button" href="#">View All Properties</a>
+            </div>
+
+            <div class="grid-wrapper">
+                <div class="grid" id="listings"></div>
+            </div>
+
+        </section>
+
+        <section id="image-slideshows">
+            <div class="section-text">
+                <p class="eyebrow">Premium Properties</p>
+                <h2>URBANTIC</h2>
+                <p>Move your cursor to explore</p>
+            </div>
+
+            <p class="trail-hint">Move your mouse around</p>
+        </section>
+
+        <section id="shop-by-categories">
+
+            <h2 style="padding: 0 20px; margin-bottom: 20px;" class="sec-heading">Shop By Categories</h2>
+
+            <!-- Filter tabs -->
+            <div style="padding: 0 20px;" class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Apartments</button>
+                <button class="filter-tab" data-filter="villa">Villas</button>
+                <button class="filter-tab" data-filter="2bhk">2 BHK</button>
+                <button class="filter-tab" data-filter="3bhk">3 BHK</button>
+                <button class="filter-tab" data-filter="commercial">Commercial</button>
+                <button class="filter-tab" data-filter="new">New Projects</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid-wrapper">
+                <div class="grid" id="grid"></div>
+            </div>
+        </section>    
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./script.js"></script>
 </body>
+
 </html>
