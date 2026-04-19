@@ -218,7 +218,8 @@ nav ul a {
 
 .sec-heading {
     font-family: 'GothicA1', Helvetica, Arial, sans-serif;
-    font-size: 3rem;
+    font-size: clamp(2rem, 2.5vw, 5rem);
+    font-weight: 600;
 }
 
 #featured-properties .heading a {
@@ -560,4 +561,203 @@ nav ul a {
     background: var(--orange);
     color: #fff;
     border: 1.5px solid var(--orange);
+}
+
+/* --------------------------------------------------------------------------- Why Choose Us -------------------------------------------------------------------------------------- */
+
+#why-choose-us{
+    padding: 150px 20vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#why-choose-us h2{
+    font-size: clamp(2rem, 3vw, 5rem);
+}
+
+#why-choose-us p{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    padding: 10px 10vw;
+}
+
+#why-choose-us a{
+    border-radius: 50px;
+    padding: 10px 40px;
+    margin: 50px 0;
+    display: block;
+}
+
+.trust-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.trusted-badge{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 30%;
+    height: 70px;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* --------------------------------------------------------------- About Me Section ---------------------------------------------------------- */
+
+#about-me{
+    padding: 150px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+#about-me div{
+    overflow: hidden;
+}
+
+#about-me img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    
+}
+
+#about-me .right-div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#about-me .right-div h3{
+    font-size: 1.3rem;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-top: -5px;
+}
+
+#about-me .right-div div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#about-me .right-div div p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+}
+
+#about-me .right-div div a{
+    padding: 10px 30px;
+}
+
+/* ---------------------------------------------------- Testimonials ------------------------------------------------------ */
+
+#testimonials{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border: 1px white solid;
+}
+
+#testimonials .sec-heading{
+    color: var(--orange);
+    text-align: center;
+    display: flex;
+    align-items: end;
+    padding: 50px;
+    font-size: clamp(2rem, 4vw, 5rem);
+    font-weight: 500;
+}
+
+#testimonials div{
+    height: 60vh;
+}
+
+.testi-div{
+    background-color: black;
+    color: white;
+    padding: 150px 70px;
+    border: 1px white solid;
+}
+
+.testi-div h3{
+    font-family: "GothicA1", Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.testi-div p{
+    font-family: "GothicA1", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* --------------------------------------------------------------- Footer Section ------------------------------------------------------------ */
+
+footer{
+    background-color: black;
+    color: white;
+    padding: 70px 70px;
+    border: white 2px solid;
+    border-top: none;
+}
+
+footer .logo{
+    color: white;
+    position: static;
+    text-align: left;
+    font-size: clamp(2rem, 6vw, 10rem);
+    display: block;
+    z-index: 10;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+footer p{
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 100;
+    opacity: 0.8;
+    margin-bottom: 50px;
+}
+
+.socials{
+    display: flex;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.socials img{
+    width: 30px;
+}
+
+.footer-info{
+    display: flex;
+    border-top: white 2px solid;
+    padding-top: 20px;
+    justify-content: space-between;
+    font-family: Arial, Helvetica,sans-serif;
+}
+
+.footer-info h4{
+    font-weight: 100;
+}
+
+.footer-info h4 span{
+    font-weight: 600;
+}
+
+.footer-info a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-info a span{
+    color: var(--orange);
 }
