@@ -10,6 +10,16 @@ lenis.on('scroll', (e) => {
   console.log(e);
 });
 
+// Burger manu ---------------------------------------------------------------------
+
+const burger = document.getElementById('burger-btn');
+const drawer = document.getElementById('mobile-drawer');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  drawer.classList.toggle('open');
+});
+
 // Featured Properties Section -------------------------------------------------------------
 
 const properties = [

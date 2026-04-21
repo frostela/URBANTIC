@@ -17,15 +17,32 @@
 <body>
     <header>
         <nav>
+            <a class="logo" href="#">URBANTIC</a>
+
             <ul>
-                <a>Home</a>
-                <a>Properties</a>
-                <a>About</a>
-                <a>Contact</a>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Properties</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
 
-            <a class="logo" href="#">URBANTIC</a>
-            <a class="main-button" href="#">Get Property List</a>
+            <a class="main-button" id="nav-cta-button" href="#">Get Property List</a>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-drawer" id="mobile-drawer">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Properties</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a class="main-button" href="#">Get Property List</a>
+            </div>
         </nav>
     </header>
     <main>
@@ -126,7 +143,7 @@
         </section>
 
         <section id="about-me">
-            <div></div>
+            <div id="empty-div"></div>
             <div><img src="/contents/img/Sudipta Bhattacharya img.png" alt="Sudipta Bhattacharya img"></div>
             <div class="right-div">
                 <h3>Sudipta<br>Bhattacharya</h3>
@@ -190,11 +207,13 @@
         </div>
         <div class="footer-info">
             <h4>2026 The <span>URBANTIC</span>. All right reserved.</h4>
-            <a target="_blank" href="https://frostela.com/"><h4>Site By <span>Crafted Frostela</span></h4></a>
+            <a target="_blank" href="https://frostela.com/">
+                <h4 style="text-align: right;">Site By <span>Crafted Frostela</span></h4>
+            </a>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script> 
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="./script.js"></script>
 </body>
