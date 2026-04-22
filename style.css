@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "GothicA1";
-    src: url("./contents/fonts/GothicA1-Regular.ttf") format("ttf");
+    src: url("./contents/fonts/GothicA1-Regular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: "Rawgly";
-    src: url("./contents/fonts/RawglyRegular-MVyWP.otf") format("otf");
+    src: url("./contents/fonts/RawglyRegular-MVyWP.woff2") format("woff2");
 }
 
 * {
@@ -1027,8 +1027,6 @@ footer p {
     #hero-section {
         height: 65vh;
     }
-
-
 }
 
 @media (max-width: 430px) {
