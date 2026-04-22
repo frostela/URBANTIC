@@ -210,7 +210,7 @@ nav ul a {
     margin: 25px 0;
 }
 
-.location img{
+.location img {
     width: 1.1em;
 }
 
@@ -1154,6 +1154,10 @@ footer p {
 
     .cta {
         padding: 0 25px;
+    }
+
+    nav {
+        padding: 15px 10px;
     }
 
 }
