@@ -92,7 +92,8 @@ properties.forEach(p => {
       <div class="card-body">
         <div class="card-title">${p.title}</div>
         <div class="card-location">
-          <img class="pin" src="/contents/img/location-icon.png" alt="Location"> ${p.location}
+          <div><img class="pin" src="/contents/img/location-icon.png" alt="Location"> </div>
+          <h3>${p.location} </h3>
         </div>
         <div class="card-meta">
           ${bedMeta}
@@ -488,7 +489,8 @@ function renderCards(filter) {
         <div class="card-body">
           <div class="card-title">${p.title}</div>
           <div class="card-location">
-            <img class="pin" src="./contents/img/location-icon.png" alt="Location"> ${p.location}
+            <div><img class="pin" src="/contents/img/location-icon.png" alt="Location"> </div>
+            <h3>${p.location} </h3>
           </div>
           <div class="card-meta">
             ${bedMeta}

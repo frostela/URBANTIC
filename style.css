@@ -687,6 +687,7 @@ nav ul a {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+
 /* --------------------------------------------------------------- About Me Section ---------------------------------------------------------- */
 
 #about-me {
@@ -1051,7 +1052,7 @@ footer p {
     }
 
     .card-img {
-        height: 200px;
+        height: 170px;
     }
 
     .card-title {
@@ -1081,13 +1082,17 @@ footer p {
     }
 
     .trusted-badge {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width: 45%;
         overflow: visible;
     }
 
     .trusted-badge img {
-        width: 3rem;
+        width: 20%;
+    }
+
+    .trusted-badge div {
+        width: 80%;
     }
 
     #testimonials {
@@ -1109,6 +1114,34 @@ footer p {
         font-size: clamp(3rem, 6vw, 10rem);
         position: static;
         margin-bottom: 20px;
+    }
+
+    #featured-properties .heading {
+        padding: 0 10px;
+    }
+
+    .card-location {
+        width: 100%;
+    }
+
+    .card-location div {
+        width: 10%;
+    }
+
+    .card-location img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .card-location h3 {
+        width: 80%;
+        font-weight: 500;
+        font-size: (1rem, 1.5vw, 1.3rem);
+    }
+
+    .footer-info {
+        flex-direction: column;
     }
 
 }
