@@ -222,6 +222,9 @@ properties.forEach(p => {
   // ─── MOBILE / TABLET: Auto-floating images ─────────────────────
   let autoInterval = null;
 
+  // More reliable touch detection for real devices
+  const isTouchDevice = () => navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+
   function randomBetween(a, b) {
     return a + Math.random() * (b - a);
   }
@@ -234,7 +237,6 @@ properties.forEach(p => {
     const secH = section.offsetHeight;
     const { w, h } = getImgSize();
 
-    // Random position across the full section with some padding
     const pad = 30;
     const posX = randomBetween(pad, secW - w - pad);
     const posY = randomBetween(pad, secH - h - pad);
@@ -251,7 +253,6 @@ properties.forEach(p => {
       zIndex: 100 + poolIndex
     });
 
-    // Float in
     gsap.to(el, {
       opacity: 1,
       scale: 1,
@@ -259,7 +260,6 @@ properties.forEach(p => {
       ease: 'power2.out',
     });
 
-    // Hold then float up and fade
     gsap.to(el, {
       y: posY - 50,
       opacity: 0,
@@ -272,11 +272,9 @@ properties.forEach(p => {
 
   function startAutoFloat() {
     if (autoInterval) return;
-    // Fire a few immediately so section isn't empty
     spawnAutoImage();
     setTimeout(spawnAutoImage, 300);
     setTimeout(spawnAutoImage, 600);
-    // Then keep spawning
     autoInterval = setInterval(spawnAutoImage, 900);
   }
 
@@ -287,7 +285,7 @@ properties.forEach(p => {
     }
   }
 
-  // Update hint text for touch users
+  // Update hint text
   function updateHints() {
     const hint = document.getElementById('trail-hint-text');
     const bottomHint = document.getElementById('bottom-hint');
@@ -297,23 +295,27 @@ properties.forEach(p => {
     }
   }
 
-  // Use IntersectionObserver to start/stop auto-float
-  // when section is visible (saves battery when scrolled away)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && isTouchDevice()) {
-        startAutoFloat();
-      } else {
-        stopAutoFloat();
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(section);
-
-  // Also start immediately if already touch + visible
   updateHints();
-  if (isTouchDevice()) startAutoFloat();
+
+  if (isTouchDevice()) {
+    // Start immediately, don't wait for IntersectionObserver
+    startAutoFloat();
+
+    // Then use observer only to pause/resume when scrolled away
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAutoFloat();
+        } else {
+          stopAutoFloat();
+        }
+      });
+    }, { threshold: 0.1 }); // lowered to 0.1 — triggers earlier
+
+    observer.observe(section);
+
+  }
+  // Desktop mouse trail stays exactly as it was above this block
 
 })();
 

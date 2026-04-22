@@ -1137,7 +1137,7 @@ footer p {
     .card-location h3 {
         width: 80%;
         font-weight: 500;
-        font-size: (1rem, 1.5vw, 1.3rem);
+        font-size: clamp(1rem, 1.5vw, 1.3rem);
     }
 
     .footer-info {
