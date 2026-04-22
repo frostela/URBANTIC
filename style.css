@@ -1144,4 +1144,12 @@ footer p {
         flex-direction: column;
     }
 
+    #hero-section {
+        padding: 0 10px;
+    }
+
+    .cta {
+        padding: 0 25px;
+    }
+
 }

@@ -114,6 +114,7 @@ properties.forEach(p => {
 
 (function () {
   const section = document.getElementById('image-slideshows');
+  if (!section) return;
 
   const imageSrcs = [
     "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80",
@@ -148,10 +149,9 @@ properties.forEach(p => {
     pool.push(img);
   });
 
-  // Detect touch device
-  const isTouchDevice = () => window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  // ── RELIABLE touch detection — works on real Android/iOS ──
+  const isTouchDevice = () => navigator.maxTouchPoints > 0 || ('ontouchstart' in window);
 
-  // ─── DESKTOP: Mouse trail ──────────────────────────────────────
   let poolIndex = 0;
   let lastX = 0, lastY = 0, lastTime = 0;
   const DISTANCE_THRESHOLD = 80;
@@ -163,6 +163,7 @@ properties.forEach(p => {
       : { w: 220, h: 280 };
   }
 
+  // ─── Shared spawn function ─────────────────────────────────────
   function spawnAt(x, y) {
     const el = pool[poolIndex % pool.length];
     poolIndex++;
@@ -200,6 +201,7 @@ properties.forEach(p => {
     });
   }
 
+  // ─── DESKTOP: Mouse trail ──────────────────────────────────────
   section.addEventListener('mousemove', (e) => {
     if (isTouchDevice()) return;
     const rect = section.getBoundingClientRect();
@@ -222,52 +224,18 @@ properties.forEach(p => {
   // ─── MOBILE / TABLET: Auto-floating images ─────────────────────
   let autoInterval = null;
 
-  // More reliable touch detection for real devices
-  const isTouchDevice = () => navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
-
   function randomBetween(a, b) {
     return a + Math.random() * (b - a);
   }
 
   function spawnAutoImage() {
-    const el = pool[poolIndex % pool.length];
-    poolIndex++;
-
     const secW = section.offsetWidth;
     const secH = section.offsetHeight;
     const { w, h } = getImgSize();
-
     const pad = 30;
-    const posX = randomBetween(pad, secW - w - pad);
-    const posY = randomBetween(pad, secH - h - pad);
-    const rotation = (Math.random() - 0.5) * 22;
-
-    gsap.killTweensOf(el);
-
-    gsap.set(el, {
-      x: posX,
-      y: posY,
-      opacity: 0,
-      scale: 0.75,
-      rotation: rotation,
-      zIndex: 100 + poolIndex
-    });
-
-    gsap.to(el, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.5,
-      ease: 'power2.out',
-    });
-
-    gsap.to(el, {
-      y: posY - 50,
-      opacity: 0,
-      scale: 0.9,
-      duration: 1.6,
-      delay: 0.8,
-      ease: 'power2.inOut',
-    });
+    const x = randomBetween(pad + w / 2, secW - pad - w / 2);
+    const y = randomBetween(pad + h / 2, secH - pad - h / 2);
+    spawnAt(x, y);
   }
 
   function startAutoFloat() {
@@ -286,36 +254,32 @@ properties.forEach(p => {
   }
 
   // Update hint text
-  function updateHints() {
-    const hint = document.getElementById('trail-hint-text');
-    const bottomHint = document.getElementById('bottom-hint');
-    if (isTouchDevice()) {
-      if (hint) hint.textContent = 'Sit back and explore';
-      if (bottomHint) bottomHint.textContent = 'Swipe up to continue';
-    }
+  const hintText   = document.getElementById('trail-hint-text');
+  const bottomHint = document.getElementById('bottom-hint');
+  if (isTouchDevice()) {
+    if (hintText)   hintText.textContent   = 'Sit back and explore';
+    if (bottomHint) bottomHint.textContent = 'Swipe up to continue';
   }
 
-  updateHints();
-
-  if (isTouchDevice()) {
-    // Start immediately, don't wait for IntersectionObserver
-    startAutoFloat();
-
-    // Then use observer only to pause/resume when scrolled away
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  // IntersectionObserver — pause when scrolled out of view (saves battery)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (isTouchDevice()) {
         if (entry.isIntersecting) {
           startAutoFloat();
         } else {
           stopAutoFloat();
         }
-      });
-    }, { threshold: 0.1 }); // lowered to 0.1 — triggers earlier
+      }
+    });
+  }, { threshold: 0.2 });
 
-    observer.observe(section);
+  observer.observe(section);
 
+  // Start immediately on touch — don't wait for observer on first load
+  if (isTouchDevice()) {
+    startAutoFloat();
   }
-  // Desktop mouse trail stays exactly as it was above this block
 
 })();
 
@@ -473,7 +437,7 @@ const ctgGrid = document.getElementById('grid');
 function renderCards(filter) {
   ctgGrid.innerHTML = '';
   const filtered = filter === 'all'
-    ? properties_for_ctg
+    ? properties_for_ctg.filter(p => p.category === 'all')
     : properties_for_ctg.filter(p => p.category === filter);
 
   filtered.forEach(p => {
@@ -496,16 +460,16 @@ function renderCards(filter) {
           </div>
           <div class="card-meta">
             ${bedMeta}
-              <div class="meta-item">${bathSVG} ${p.baths} Bathroom${p.baths > 1 ? 's' : ''}</div>
-              <div class="divider-line"></div>
-              <div class="meta-item">${sqftSVG} ${p.sqft.toLocaleString()} Sqft</div>
+            <div class="meta-item">${bathSVG} ${p.baths} Bathroom${p.baths > 1 ? 's' : ''}</div>
+            <div class="divider-line"></div>
+            <div class="meta-item">${sqftSVG} ${p.sqft.toLocaleString()} Sqft</div>
           </div>
           <div class="card-footer">
-          <div class="price">${p.price}<span>/month</span></div>
-          <a class="main-button" href="#">View Details</a>
+            <div class="price">${p.price}<span>${priceLabel}</span></div>
+            <a class="main-button" href="#">View Details</a>
+          </div>
         </div>
-      </div>
-    </div>`;
+      </div>`;
   });
 }
 
