@@ -1046,13 +1046,15 @@ footer p {
 
     .grid {
         grid-template-columns: 1fr 1fr;
-        padding: 10px 10px;
-        gap: 10px;
+        padding: 10px 0;
+        gap: 0px;
         padding-bottom: 30px;
     }
 
     .card {
         padding: 5px;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .card-img {
