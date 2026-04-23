@@ -1048,7 +1048,7 @@ footer p {
         grid-template-columns: 1fr 1fr;
         padding: 10px 0;
         gap: 0px;
-        padding-bottom: 30px;
+        padding-bottom: 0;
     }
 
     .card {
