@@ -1,16 +1,16 @@
-// Lenis Scroll ----------------------------------------------------------------------
+// ============================================================
+//  URBANTIC — script.js  (Home Page)
+//  Card rendering & filter tabs are handled by data.js
+//  This file: Lenis, burger menu, image slideshow
+// ============================================================
 
-// Initialize Lenis
-const lenis = new Lenis({
-  autoRaf: true,
-});
 
-// Listen for the scroll event and log the event data
-lenis.on('scroll', (e) => {
-  console.log(e);
-});
+// ── LENIS SMOOTH SCROLL ──────────────────────────────────────
 
-// Burger manu ---------------------------------------------------------------------
+const lenis = new Lenis({ autoRaf: true });
+
+
+// ── BURGER MENU ──────────────────────────────────────────────
 
 const burger = document.getElementById('burger-btn');
 const drawer = document.getElementById('mobile-drawer');
@@ -20,97 +20,8 @@ burger.addEventListener('click', () => {
   drawer.classList.toggle('open');
 });
 
-// Featured Properties Section -------------------------------------------------------------
 
-const properties = [
-  {
-    title: "Japanese Minka Townhouse",
-    location: "New Town Central Road, Kolkata",
-    beds: 3, baths: 2, sqft: 1800,
-    price: "₹ 20,120", type: "rent",
-    image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80"
-  },
-  {
-    title: "Modern Studio Apartment",
-    location: "Salt Lake Sector V, Kolkata",
-    beds: 1, baths: 1, sqft: 650,
-    price: "₹ 12,500", type: "rent",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80"
-  },
-  {
-    title: "Heritage Villa with Garden",
-    location: "Alipore, Kolkata",
-    beds: 5, baths: 4, sqft: 4200,
-    price: "₹ 85,000", type: "sale",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80"
-  },
-  {
-    title: "Cozy 2BHK Flat",
-    location: "Tollygunge, Kolkata",
-    beds: 2, baths: 1, sqft: 950,
-    price: "₹ 18,000", type: "rent",
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"
-  },
-  {
-    title: "Penthouse with Terrace",
-    location: "Park Street, Kolkata",
-    beds: 4, baths: 3, sqft: 3100,
-    price: "₹ 1,20,000", type: "new",
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80"
-  },
-  {
-    title: "Compact Office Space",
-    location: "Rajarhat, Kolkata",
-    beds: 0, baths: 2, sqft: 1100,
-    price: "₹ 35,000", type: "sale",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
-  }
-];
-
-const badgeMap = {
-  rent: { cls: "badge-rent", label: "For Rent" },
-  sale: { cls: "badge-sale", label: "For Sale" },
-  new: { cls: "badge-new", label: "New Launch" }
-};
-
-const bedSVG = `<img class="meta-icon" src="./contents/img/bed-icon.png" alt="bed-Img">`;
-const bathSVG = `<img class="meta-icon" src="./contents/img/bathroom-icon.png" alt="bath-Img">`;
-const sqftSVG = `<img class="meta-icon" src="./contents/img/sqft-icon.png" alt="sqft-Img">`;
-
-const grid = document.getElementById('listings');
-
-properties.forEach(p => {
-  const badge = badgeMap[p.type];
-  const bedMeta = p.beds > 0
-    ? `<div class="meta-item">${bedSVG} ${p.beds} Bedroom${p.beds > 1 ? 's' : ''}</div><div class="divider-line"></div>`
-    : '';
-
-  grid.innerHTML += `
-    <div class="card">
-      <img class="card-img" src="${p.image}" alt="${p.title}" onerror="this.src='https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80'"/>
-      <span class="badge ${badge.cls}">${badge.label}</span>
-      <div class="card-body">
-        <div class="card-title">${p.title}</div>
-        <div class="card-location">
-          <div><img class="pin" src="/contents/img/location-icon.png" alt="Location"> </div>
-          <h3>${p.location} </h3>
-        </div>
-        <div class="card-meta">
-          ${bedMeta}
-          <div class="meta-item">${bathSVG} ${p.baths} Bathroom${p.baths > 1 ? 's' : ''}</div>
-          <div class="divider-line"></div>
-          <div class="meta-item">${sqftSVG} ${p.sqft.toLocaleString()} Sqft</div>
-        </div>
-        <div class="card-footer">
-          <div class="price">${p.price}<span>/month</span></div>
-          <a class="main-button" href="#">View Details</a>
-        </div>
-      </div>
-    </div>`;
-});
-
-
-// Image slider -------------------------------------------------------------------------------------------
+// ── IMAGE SLIDESHOW (cursor trail) ───────────────────────────
 
 (function () {
   const section = document.getElementById('image-slideshows');
@@ -137,7 +48,7 @@ properties.forEach(p => {
     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80",
   ];
 
-  // Build pool
+  // Build image pool
   const pool = [];
   imageSrcs.forEach((src) => {
     const img = document.createElement('img');
@@ -149,7 +60,6 @@ properties.forEach(p => {
     pool.push(img);
   });
 
-  // ── RELIABLE touch detection — works on real Android/iOS ──
   const isTouchDevice = () => navigator.maxTouchPoints > 0 || ('ontouchstart' in window);
 
   let poolIndex = 0;
@@ -163,7 +73,6 @@ properties.forEach(p => {
       : { w: 220, h: 280 };
   }
 
-  // ─── Shared spawn function ─────────────────────────────────────
   function spawnAt(x, y) {
     const el = pool[poolIndex % pool.length];
     poolIndex++;
@@ -174,40 +83,17 @@ properties.forEach(p => {
     const posY = y - h / 2;
 
     gsap.killTweensOf(el);
-
-    gsap.set(el, {
-      x: posX,
-      y: posY,
-      opacity: 0,
-      scale: 0.8,
-      rotation: rotation,
-      zIndex: 100 + poolIndex
-    });
-
-    gsap.to(el, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.22,
-      ease: 'power2.out',
-    });
-
-    gsap.to(el, {
-      y: posY - 35,
-      opacity: 0,
-      scale: 0.88,
-      duration: 1.1,
-      delay: 0.28,
-      ease: 'power3.in',
-    });
+    gsap.set(el, { x: posX, y: posY, opacity: 0, scale: 0.8, rotation, zIndex: 100 + poolIndex });
+    gsap.to(el, { opacity: 1, scale: 1, duration: 0.22, ease: 'power2.out' });
+    gsap.to(el, { y: posY - 35, opacity: 0, scale: 0.88, duration: 1.1, delay: 0.28, ease: 'power3.in' });
   }
 
-  // ─── DESKTOP: Mouse trail ──────────────────────────────────────
+  // Desktop: mouse trail
   section.addEventListener('mousemove', (e) => {
     if (isTouchDevice()) return;
     const rect = section.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-
     const dx = mouseX - lastX;
     const dy = mouseY - lastY;
     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -221,12 +107,10 @@ properties.forEach(p => {
     }
   });
 
-  // ─── MOBILE / TABLET: Auto-floating images ─────────────────────
+  // Mobile: auto-floating images
   let autoInterval = null;
 
-  function randomBetween(a, b) {
-    return a + Math.random() * (b - a);
-  }
+  function randomBetween(a, b) { return a + Math.random() * (b - a); }
 
   function spawnAutoImage() {
     const secW = section.offsetWidth;
@@ -247,10 +131,7 @@ properties.forEach(p => {
   }
 
   function stopAutoFloat() {
-    if (autoInterval) {
-      clearInterval(autoInterval);
-      autoInterval = null;
-    }
+    if (autoInterval) { clearInterval(autoInterval); autoInterval = null; }
   }
 
   // Update hint text
@@ -261,226 +142,18 @@ properties.forEach(p => {
     if (bottomHint) bottomHint.textContent = 'Swipe up to continue';
   }
 
-  // IntersectionObserver — pause when scrolled out of view (saves battery)
+  // Pause when off-screen (saves battery on mobile)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (isTouchDevice()) {
-        if (entry.isIntersecting) {
-          startAutoFloat();
-        } else {
-          stopAutoFloat();
-        }
+        if (entry.isIntersecting) startAutoFloat();
+        else stopAutoFloat();
       }
     });
   }, { threshold: 0.2 });
 
   observer.observe(section);
 
-  // Start immediately on touch — don't wait for observer on first load
-  if (isTouchDevice()) {
-    startAutoFloat();
-  }
+  if (isTouchDevice()) startAutoFloat();
 
 })();
-
-// catagories -----------------------------------------------------------------------------------------------------------------------------------
-
-const properties_for_ctg = [
-  {
-    title: "Japanese Minka Townhouse",
-    location: "New Town Central Road, Kolkata",
-    beds: 2, baths: 3, sqft: 2500,
-    price: "₹ 20,120", type: "rent",
-    category: "all",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80"
-  },
-  {
-    title: "Japanese Minka Shop Buy",
-    location: "New Town Central Road, Kolkata",
-    beds: 2, baths: 3, sqft: 2500,
-    price: "₹ 20,120", type: "sale",
-    category: "all",
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"
-  },
-  {
-    title: "Japanese Minka Shop Buy",
-    location: "New Town Central Road, Kolkata",
-    beds: 2, baths: 3, sqft: 2500,
-    price: "₹ 20,120", type: "rent",
-    category: "all",
-    image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80"
-  },
-  {
-    title: "Luxury Villa with Pool",
-    location: "Alipore, Kolkata",
-    beds: 5, baths: 4, sqft: 4500,
-    price: "₹ 85,000", type: "sale",
-    category: "villa",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80"
-  },
-  {
-    title: "Spacious Garden Villa",
-    location: "Ballygunge, Kolkata",
-    beds: 4, baths: 3, sqft: 3800,
-    price: "₹ 65,000", type: "rent",
-    category: "villa",
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80"
-  },
-  {
-    title: "Modern Heritage Villa",
-    location: "Jodhpur Park, Kolkata",
-    beds: 6, baths: 5, sqft: 5200,
-    price: "₹ 1,10,000", type: "sale",
-    category: "villa",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80"
-  },
-  {
-    title: "Cozy 2BHK Apartment",
-    location: "Salt Lake Sector V, Kolkata",
-    beds: 2, baths: 1, sqft: 950,
-    price: "₹ 18,000", type: "rent",
-    category: "2bhk",
-    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600&q=80"
-  },
-  {
-    title: "Modern 2BHK Flat",
-    location: "Tollygunge, Kolkata",
-    beds: 2, baths: 2, sqft: 1100,
-    price: "₹ 22,000", type: "rent",
-    category: "2bhk",
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80"
-  },
-  {
-    title: "Furnished 2BHK Studio",
-    location: "Rajarhat, Kolkata",
-    beds: 2, baths: 1, sqft: 880,
-    price: "₹ 15,500", type: "rent",
-    category: "2bhk",
-    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80"
-  },
-  {
-    title: "Spacious 3BHK Apartment",
-    location: "Park Street, Kolkata",
-    beds: 3, baths: 2, sqft: 1600,
-    price: "₹ 38,000", type: "rent",
-    category: "3bhk",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80"
-  },
-  {
-    title: "Premium 3BHK Penthouse",
-    location: "Elgin Road, Kolkata",
-    beds: 3, baths: 3, sqft: 2100,
-    price: "₹ 55,000", type: "sale",
-    category: "3bhk",
-    image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80"
-  },
-  {
-    title: "3BHK Corner Flat",
-    location: "Behala, Kolkata",
-    beds: 3, baths: 2, sqft: 1450,
-    price: "₹ 29,000", type: "rent",
-    category: "3bhk",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80"
-  },
-  {
-    title: "Prime Office Space",
-    location: "Sector V, Salt Lake, Kolkata",
-    beds: 0, baths: 2, sqft: 1800,
-    price: "₹ 45,000", type: "rent",
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
-  },
-  {
-    title: "Retail Shop Ground Floor",
-    location: "Gariahat, Kolkata",
-    beds: 0, baths: 1, sqft: 650,
-    price: "₹ 28,000", type: "rent",
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80"
-  },
-  {
-    title: "Corporate Office Suite",
-    location: "New Town, Kolkata",
-    beds: 0, baths: 3, sqft: 3200,
-    price: "₹ 90,000", type: "sale",
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=600&q=80"
-  },
-  {
-    title: "New Launch Tower A",
-    location: "Action Area II, Kolkata",
-    beds: 3, baths: 2, sqft: 1500,
-    price: "₹ 42,000", type: "new",
-    category: "new",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80"
-  },
-  {
-    title: "New Project Sky Residency",
-    location: "Rajarhat, Kolkata",
-    beds: 4, baths: 3, sqft: 2200,
-    price: "₹ 68,000", type: "new",
-    category: "new",
-    image: "https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?w=600&q=80"
-  },
-  {
-    title: "Grand New Launch Villas",
-    location: "EM Bypass, Kolkata",
-    beds: 5, baths: 4, sqft: 3600,
-    price: "₹ 95,000", type: "new",
-    category: "new",
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80"
-  },
-];
-
-const ctgGrid = document.getElementById('grid');
-
-function renderCards(filter) {
-  ctgGrid.innerHTML = '';
-  const filtered = filter === 'all'
-    ? properties_for_ctg.filter(p => p.category === 'all')
-    : properties_for_ctg.filter(p => p.category === filter);
-
-  filtered.forEach(p => {
-    const badge = badgeMap[p.type];
-    const bedMeta = p.beds > 0
-      ? `<div class="meta-item">${bedSVG} ${p.beds} Bedroom${p.beds > 1 ? 's' : ''}</div><div class="divider-line"></div>`
-      : '';
-
-    const priceLabel = p.type === 'rent' ? '/month' : '';
-
-    ctgGrid.innerHTML += `
-      <div class="card">
-        <img class="card-img" src="${p.image}" alt="${p.title}" onerror="this.src='https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80'"/>
-        <span class="badge ${badge.cls}">${badge.label}</span>
-        <div class="card-body">
-          <div class="card-title">${p.title}</div>
-          <div class="card-location">
-            <div><img class="pin" src="/contents/img/location-icon.png" alt="Location"> </div>
-            <h3>${p.location} </h3>
-          </div>
-          <div class="card-meta">
-            ${bedMeta}
-            <div class="meta-item">${bathSVG} ${p.baths} Bathroom${p.baths > 1 ? 's' : ''}</div>
-            <div class="divider-line"></div>
-            <div class="meta-item">${sqftSVG} ${p.sqft.toLocaleString()} Sqft</div>
-          </div>
-          <div class="card-footer">
-            <div class="price">${p.price}<span>${priceLabel}</span></div>
-            <a class="main-button" href="#">View Details</a>
-          </div>
-        </div>
-      </div>`;
-  });
-}
-
-// Tab switching
-document.querySelectorAll('.filter-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    renderCards(tab.dataset.filter);
-  });
-});
-
-// Initial render
-renderCards('all');

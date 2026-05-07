@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details Page</title>
+    <link rel="stylesheet" href="/details-page/details-page.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a class="logo" href="#">URBANTIC</a>
+
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#">Properties</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <a class="main-button" id="nav-cta-button" href="#">Get Property List</a>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-drawer" id="mobile-drawer">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#">Properties</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a class="main-button" href="#">Get Property List</a>
+            </div>
+        </nav>
+    </header>
+    <!-- TOP BAR -->
+    <main>
+        <!-- GALLERY -->
+        <section id="gallery">
+            <a class="main-button back-btn" onclick="history.back()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Go Back
+            </a>
+            <div class="gallery fade-up">
+
+                <div class="gallery-main gallery-img" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=80" alt="Living room" />
+                    <div class="gallery-badge">Rent</div>
+                </div>
+                <div class="gallery-thumb gallery-img" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"
+                        alt="Interior 2" />
+                </div>
+                <div class="gallery-sub">
+                    <div class="gallery-thumb gallery-img" onclick="openLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"
+                            alt="Interior 3" />
+                    </div>
+                    <div class="gallery-thumb gallery-img" onclick="openLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80"
+                            alt="Interior 4" />
+                        <div class="gallery-thumb-more">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 3v10M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+                            </svg>
+                            4 more photos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCATION BAR -->
+        <div class="top-meta">
+            <div class="location-bar fade-up fade-up-1">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1a4 4 0 0 1 4 4c0 3-4 8-4 8S3 8 3 5a4 4 0 0 1 4-4z" stroke="#EB4223" stroke-width="1.3"
+                        fill="none" />
+                    <circle cx="7" cy="5" r="1.3" stroke="#EB4223" stroke-width="1.3" />
+                </svg>
+                New Town Central Road, Kolkata
+            </div>
+
+            <!-- META PILLS -->
+            <div class="meta-row fade-up fade-up-1">
+                <div class="meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <rect x="1" y="4" width="12" height="9" rx="1.5" stroke="#EB4223" stroke-width="1.2" />
+                        <path d="M1 7h12" stroke="#EB4223" stroke-width="1.2" />
+                    </svg>
+                    2 Parking Space
+                </div>
+                <div class="meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 10V5.5A1.5 1.5 0 0 1 3.5 4h7A1.5 1.5 0 0 1 12 5.5V10" stroke="#EB4223"
+                            stroke-width="1.2" stroke-linecap="round" />
+                        <path d="M1 10h12" stroke="#EB4223" stroke-width="1.2" stroke-linecap="round" />
+                    </svg>
+                    2 Bedrooms
+                </div>
+                <div class="meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 7h10M2 7V4.5A1.5 1.5 0 0 1 3.5 3h2A1.5 1.5 0 0 1 7 4.5V7" stroke="#EB4223"
+                            stroke-width="1.2" stroke-linecap="round" />
+                        <rect x="1" y="7" width="12" height="4" rx="1.5" stroke="#EB4223" stroke-width="1.2" />
+                    </svg>
+                    3 Bathrooms
+                </div>
+                <div class="meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="#EB4223" stroke-width="1.2" />
+                        <path d="M1.5 5h11M5 1.5v11" stroke="#EB4223" stroke-width="1.2" />
+                    </svg>
+                    2500 Sqft
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-wrap">
+            <!-- LEFT: PRICE + CTA -->
+            <div class="content-left fade-up fade-up-2">
+                <div class="price-block">
+                    <div class="price-main">₹20,120<span>/month</span></div>
+                </div>
+                <p class="price-desc">
+                    This residence comes fully furnished and includes exclusive access to a private pool, dedicated
+                    parking
+                    for three vehicles, and round-the-clock maintenance. A move-in-ready home designed for elevated
+                    living
+                    in one of Abu Dhabi's most sought-after locations.
+                </p>
+                <div class="cta-row">
+                    <button class="btn-outline-dark">Contact Agent</button>
+                    <button class="btn-orange">Schedule a visit</button>
+                </div>
+            </div>
+
+            <!-- RIGHT: ABOUT + FLOOR PLAN -->
+            <div class="content-right fade-up fade-up-3">
+                <div class="about-title">About Property</div>
+                <p class="about-text">
+                    This studio office is thoughtfully designed to offer a clean, aesthetic, and comfortable workspace.
+                    Located on New Town Central Road, Kolkata, it provides a modern environment ideal for focused work
+                    and
+                    client meetings. The space is meticulously ready and perfectly suited for professionals seeking both
+                    functionality and style in a prime location.
+                </p>
+
+                <div class="floorplan-wrap">
+                    <div class="floorplan-img">
+                        <img src="/contents/img/floorplan1.png" alt="Floor Plan1" />
+                        <img src="/contents/img/floorplan2.png" alt="Floor Plan2" />
+                    </div>
+                    <div class="sqft-badge">2500 Sqft</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAP SECTION -->
+        <div class="map-section fade-up fade-up-4">
+            <div class="map-label">New Town Central Road, Kolkata</div>
+            <iframe class="map-container" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.3540!2d88.4594!3d22.5726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027171b42a5b43%3A0x4d86abf22c8c1a32!2sNew%20Town%2C%20Kolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1699000000000"
+                title="Property Location Map">
+            </iframe>
+        </div>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+            <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery" />
+            <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
+        </div>
+    </main>
+    <footer>
+        <a class="logo" href="#">URBANTIC</a>
+        <p>Urbantic Buildings is a Kolkata-based real estate service dedicated to helping buyers and renters find the
+            right residential properties with confidence. With strong local market knowledge and carefully verified
+            listings, we focus on connecting clients with well-located homes that match their needs and lifestyle.
+            Our approach is built on transparency, clear communication, and personalized assistance throughout the
+            entire process—from discovering suitable properties to arranging site visits and guiding clients toward
+            informed decisions.
+        </p>
+        <div class="socials">
+            <a href="#"><img src="/contents/img/whatsapp-icon.png" alt="whatsapp-icon"></a>
+            <a href="#"><img src="/contents/img/insta-icon.png" alt="Instagram-icon"></a>
+            <a href="#"><img src="/contents/img/email-icon.png" alt="email-icon"></a>
+        </div>
+        <div class="footer-info">
+            <h4>2026 The <span>URBANTIC</span>. All right reserved.</h4>
+            <a target="_blank" href="https://frostela.com/">
+                <h4 style="text-align: right;">Site By <span>Crafted Frostela</span></h4>
+            </a>
+        </div>
+    </footer>
+    <script src="/data.js"></script>
+</body>
+
+</html>
