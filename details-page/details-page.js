@@ -4,6 +4,10 @@
 //  This file handles: burger menu, page title, burger close on nav link
 // ============================================================
 
+// ── LENIS SMOOTH SCROLL ──────────────────────────────────────
+
+const lenis = new Lenis({ autoRaf: true });
+
 
 // ── BURGER MENU ──────────────────────────────────────────────
 

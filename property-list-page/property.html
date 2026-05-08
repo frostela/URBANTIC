@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property List</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="#">URBANTIC</a>
+
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#">Properties</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <a class="main-button" id="nav-cta-button" href="#">Get Property List</a>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-drawer" id="mobile-drawer">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#">Properties</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a class="main-button" href="#">Get Property List</a>
+            </div>
+        </nav>
+    </header>
+
+    <main style="margin-top: 80px;">
+        <section id="shop-by-categories">
+
+            <h2 style="padding: 0 20px; margin-bottom: 20px;" class="sec-heading">Shop By Categories</h2>
+
+            <!-- Filter tabs -->
+            <div style="padding: 0 20px;" class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Apartments</button>
+                <button class="filter-tab" data-filter="villa">Villas</button>
+                <button class="filter-tab" data-filter="2bhk">2 BHK</button>
+                <button class="filter-tab" data-filter="3bhk">3 BHK</button>
+                <button class="filter-tab" data-filter="commercial">Commercial</button>
+                <button class="filter-tab" data-filter="new">New Projects</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid-wrapper">
+                <div class="grid" id="grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="logo" href="#">URBANTIC</a>
+        <p>Urbantic Buildings is a Kolkata-based real estate service dedicated to helping buyers and renters find the
+            right residential properties with confidence. With strong local market knowledge and carefully verified
+            listings, we focus on connecting clients with well-located homes that match their needs and lifestyle.
+            Our approach is built on transparency, clear communication, and personalized assistance throughout the
+            entire process—from discovering suitable properties to arranging site visits and guiding clients toward
+            informed decisions.
+        </p>
+        <div class="socials">
+            <a href="#"><img src="/contents/img/whatsapp-icon.png" alt="whatsapp-icon"></a>
+            <a href="#"><img src="/contents/img/insta-icon.png" alt="Instagram-icon"></a>
+            <a href="#"><img src="/contents/img/email-icon.png" alt="email-icon"></a>
+        </div>
+        <div class="footer-info">
+            <h4>2026 The <span>URBANTIC</span>. All right reserved.</h4>
+            <a target="_blank" href="https://frostela.com/">
+                <h4 style="text-align: right;">Site By <span>Crafted Frostela</span></h4>
+            </a>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/data.js"></script>
+</body>
+
+</html>

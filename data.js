@@ -120,7 +120,6 @@ const PROPERTIES = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.9!2d88.4789!3d22.5832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0272b2d8e7f1a3%3A0x7c8d9e0f1a2b3c4d!2sRajarhat%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1699000000005",
   },
-  // ── Villa category ─────────────────────────────────────────
   {
     id: 7,
     title: "Luxury Villa with Pool",
@@ -178,7 +177,6 @@ const PROPERTIES = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.8!2d88.3519!3d22.5131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027721e2b3c4d5%3A0x4e5f6a7b8c9d0e1f!2sJodhpur%20Park%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1699000000008",
   },
-  // ── 2BHK category ──────────────────────────────────────────
   {
     id: 10,
     title: "Cozy 2BHK Apartment",
@@ -236,7 +234,6 @@ const PROPERTIES = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.9!2d88.4789!3d22.5832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0272b2d8e7f1a3%3A0x7c8d9e0f1a2b3c4d!2sRajarhat%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1699000000011",
   },
-  // ── 3BHK category ──────────────────────────────────────────
   {
     id: 13,
     title: "Spacious 3BHK Apartment",
@@ -294,7 +291,6 @@ const PROPERTIES = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.8!2d88.3118!3d22.4872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027801b2c3d4e5%3A0x6d7e8f9a0b1c2d3e!2sBehala%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1699000000014",
   },
-  // ── Commercial category ─────────────────────────────────────
   {
     id: 16,
     title: "Prime Office Space",
@@ -352,7 +348,6 @@ const PROPERTIES = [
     ],
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.35!2d88.4594!3d22.5726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027171b42a5b43%3A0x4d86abf22c8c1a32!2sNew%20Town%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1699000000017",
   },
-  // ── New Projects category ───────────────────────────────────
   {
     id: 19,
     title: "New Launch Tower A",
@@ -414,8 +409,7 @@ const PROPERTIES = [
 
 
 // ============================================================
-//  HELPERS — exact same variables as original script.js
-//  so any CSS targeting .badge, .badge-rent etc. still works
+//  HELPERS — identical to original script.js
 // ============================================================
 
 const badgeMap = {
@@ -430,17 +424,39 @@ const sqftSVG = `<img class="meta-icon" src="/contents/img/sqft-icon.png" alt="s
 
 
 // ============================================================
-//  NAVIGATION
+//  URL SLUG  — "Japanese Minka Townhouse" → "japanese-minka-townhouse"
 // ============================================================
 
-function goToDetail(id) {
-  localStorage.setItem("urbantic_selected_id", id);
-  window.location.href = "/details-page/details-page.html";
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")   // strip special chars
+    .trim()
+    .replace(/\s+/g, "-");           // spaces → hyphens
+}
+
+/** Find property by slug (used on detail page load) */
+function findBySlug(slug) {
+  return PROPERTIES.find(p => slugify(p.title) === slug) || null;
 }
 
 
 // ============================================================
-//  BUILD CARD — identical HTML structure to original script.js
+//  NAVIGATION — URL becomes /property/japanese-minka-townhouse
+// ============================================================
+
+function goToDetail(id) {
+  const p = PROPERTIES.find(x => x.id === id);
+  if (!p) return;
+  // Keep id in localStorage as fallback
+  localStorage.setItem("urbantic_selected_id", id);
+  // Navigate with clean slug URL
+  window.location.href = `/details-page/details-page.html?property=${slugify(p.title)}`;
+}
+
+
+// ============================================================
+//  BUILD CARD — exact same HTML structure as original script.js
 // ============================================================
 
 function buildCard(p) {
@@ -479,7 +495,7 @@ function buildCard(p) {
 
 
 // ============================================================
-//  HOME PAGE — Featured grid  (#listings)
+//  HOME PAGE — Featured grid (#listings)
 // ============================================================
 
 function renderFeatured() {
@@ -490,7 +506,7 @@ function renderFeatured() {
 
 
 // ============================================================
-//  HOME PAGE — Category grid  (#grid) + filter tabs
+//  HOME PAGE — Category grid (#grid) + filter tabs
 // ============================================================
 
 function renderCategory(filter) {
@@ -509,7 +525,6 @@ function renderCategory(filter) {
 function initFilterTabs() {
   const tabs = document.querySelectorAll(".filter-tab");
   if (!tabs.length) return;
-
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -517,21 +532,43 @@ function initFilterTabs() {
       renderCategory(tab.dataset.filter);
     });
   });
-
   renderCategory("all");
 }
 
 
 // ============================================================
-//  DETAIL PAGE — populate all fields from localStorage id
+//  DETAIL PAGE — resolve property from URL slug first,
+//               fall back to localStorage id
 // ============================================================
+
+function resolveProperty() {
+  // 1. Try ?property=slug in the URL
+  const params = new URLSearchParams(window.location.search);
+  const slug   = params.get("property");
+  if (slug) {
+    const p = findBySlug(slug);
+    if (p) return p;
+  }
+  // 2. Fallback: localStorage id (handles edge cases / old links)
+  const id = parseInt(localStorage.getItem("urbantic_selected_id"), 10);
+  return PROPERTIES.find(x => x.id === id) || null;
+}
 
 function populateDetailPage() {
   if (!document.getElementById("gallery")) return;
 
-  const id = parseInt(localStorage.getItem("urbantic_selected_id"), 10);
-  const p  = PROPERTIES.find(x => x.id === id);
+  const p = resolveProperty();
   if (!p) return;
+
+  // Keep localStorage in sync
+  localStorage.setItem("urbantic_selected_id", p.id);
+
+  // Canonicalise the URL to the slug without reloading
+  const slug        = slugify(p.title);
+  const canonical   = `?property=${slug}`;
+  if (!window.location.search.includes(slug)) {
+    history.replaceState(null, "", canonical);
+  }
 
   // Page title
   document.title = `URBANTIC | ${p.title}`;
@@ -540,7 +577,7 @@ function populateDetailPage() {
   const mainImg = document.querySelector(".gallery-main img");
   if (mainImg) mainImg.src = p.images[0];
 
-  // Gallery — all thumb images
+  // Gallery — thumb images
   const thumbImgs = document.querySelectorAll(".gallery-thumb img");
   thumbImgs.forEach((img, i) => {
     img.src = p.images[i + 1] || p.images[0];
@@ -549,11 +586,11 @@ function populateDetailPage() {
   // Badge
   const badge = document.querySelector(".gallery-badge");
   if (badge) {
-    badge.textContent = p.type === "rent" ? "Rent" : p.type === "sale" ? "Sale" : "New";
+    badge.textContent  = p.type === "rent" ? "Rent" : p.type === "sale" ? "Sale" : "New";
     badge.style.background = p.type === "sale" ? "#1a8a2e" : p.type === "new" ? "#7c3aed" : "#EB4223";
   }
 
-  // Location bar — preserve SVG, update text
+  // Location bar — preserve SVG, replace text
   const locBar = document.querySelector(".location-bar");
   if (locBar) {
     const svg = locBar.querySelector("svg");
@@ -561,7 +598,7 @@ function populateDetailPage() {
     if (svg) locBar.prepend(svg);
   }
 
-  // Meta pills — replace text node only, keep SVG intact
+  // Meta pills — replace text node only, keep SVG
   const pills    = document.querySelectorAll(".meta-pill");
   const pillData = [
     ` ${p.parking} Parking Space`,
@@ -584,11 +621,11 @@ function populateDetailPage() {
     priceMain.innerHTML = `${p.price}<span>${label}</span>`;
   }
 
-  // Left description
+  // Description (left)
   const priceDesc = document.querySelector(".price-desc");
   if (priceDesc) priceDesc.textContent = p.description;
 
-  // Right about text
+  // About text (right)
   const aboutText = document.querySelector(".about-text");
   if (aboutText) aboutText.textContent = p.about;
 
@@ -596,20 +633,20 @@ function populateDetailPage() {
   const sqftBadge = document.querySelector(".sqft-badge");
   if (sqftBadge) sqftBadge.textContent = `${p.sqft.toLocaleString()} Sqft`;
 
-  // Map iframe + label
+  // Map
   const mapIframe = document.querySelector(".map-container");
   if (mapIframe) mapIframe.src = p.mapEmbed;
 
   const mapLabel = document.querySelector(".map-label");
   if (mapLabel) mapLabel.textContent = p.location;
 
-  // Expose images array to lightbox functions
+  // Expose images to lightbox
   window._lightboxImgs = p.images;
 }
 
 
 // ============================================================
-//  LIGHTBOX — uses window._lightboxImgs set by populateDetailPage
+//  LIGHTBOX
 // ============================================================
 
 window._lightboxCur = 0;
@@ -654,11 +691,11 @@ document.addEventListener("keydown", e => {
 
 
 // ============================================================
-//  INIT — safe for both pages, each function guards itself
+//  INIT
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderFeatured();      // home: fills #listings
-  initFilterTabs();      // home: fills #grid + wires tabs
-  populateDetailPage();  // detail: injects all property data
+  renderFeatured();
+  initFilterTabs();
+  populateDetailPage();
 });
