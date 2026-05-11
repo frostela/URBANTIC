@@ -50,6 +50,10 @@ nav ul a {
     color: black;
 }
 
+nav ul .active {
+    color: var(--orange);
+}
+
 .main-button {
     background-color: var(--orange);
     font-family: Helvetica, Arial, sans-serif;

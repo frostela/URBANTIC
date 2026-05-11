@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URBANTIC | About Sudipta</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        :root {
+            --Gothic: "GothicA1", Arial, Helvetica, sans-serif;
+            --Ubuntu: "Ubuntu", Arial, Helvetica, sans-serif;
+            --Rawgly: "Rawgly", Arial, Helvetica, sans-serif;
+            --helva: Helvetica, Arial, sans-serif;
+        }
+
+        *{
+            font-family: var(--helva);
+        }
+
+        /* ── PAGE SHELL ── */
+        .about-page {
+            padding: 0;
+        }
+
+        /* ── HERO SPLIT ── */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 72px);
+        }
+
+        .about-hero-img {
+            position: relative;
+            overflow: hidden;
+            background: #e8e4de;
+        }
+
+        .about-hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .about-hero-img .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, transparent 60%, #fff 100%);
+        }
+
+        .about-hero-content {
+            padding: 72px 60px 72px 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-eyebrow {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent, #E8442A);
+            margin-bottom: 16px;
+        }
+
+        .about-hero-content h1 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            overflow: visible;
+            font-family: var(--Gothic);
+        }
+
+        .about-hero-content .subtitle {
+            font-size: 15px;
+            color: #888;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .about-hero-content .bio {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #444;
+            max-width: 480px;
+            margin-bottom: 36px;
+        }
+
+        .about-cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .about-butt{
+            padding: 12px 50px;
+        }
+
+        .btn-ghost {
+            border: 1.5px solid #1a1a1a;
+            background: transparent;
+            transition: all .2s;
+            color: #1a1a1a;
+        }
+
+        .btn-ghost:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* ── STATS BAR ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #e8e4de;
+            border-bottom: 1px solid #e8e4de;
+        }
+
+        .stat-item {
+            padding: 36px 32px;
+            border-right: 1px solid #e8e4de;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+            color: #1a1a1a;
+            overflow: visible;
+        }
+
+        .stat-number span {
+            color: var(--accent, #E8442A);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: .4px;
+        }
+
+        /* ── STORY SECTION ── */
+        .about-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .story-left {
+            padding: 72px 60px 72px 60px;
+            border-right: 1px solid #e8e4de;
+        }
+
+        .story-right {
+            padding: 72px 60px;
+        }
+
+        .section-label {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent, #E8442A);
+            margin-bottom: 20px;
+        }
+
+        .story-left h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .story-left p {
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #1f1f1f;
+            margin-bottom: 18px;
+        }
+
+        /* ── VALUES LIST ── */
+        .values-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid #e8e4de;
+        }
+
+        .value-item:first-child {
+            border-top: 1px solid #e8e4de;
+        }
+
+        .value-number {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent, #E8442A);
+            letter-spacing: 1px;
+            padding-top: 3px;
+            min-width: 28px;
+        }
+
+        .value-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        .value-text p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── CREDENTIALS ── */
+        .credentials-section {
+            background: #f7f5f2;
+            padding: 72px 60px;
+            border-top: 1px solid #e8e4de;
+        }
+
+        .credentials-section h2 {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .credential-card {
+            background: #fff;
+            border: 1px solid #e8e4de;
+            border-radius: 8px;
+            padding: 28px 24px;
+        }
+
+        .credential-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #fff3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .credential-icon svg {
+            color: var(--accent, #E8442A);
+        }
+
+        .credential-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .credential-card p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── CLOSING CTA ── */
+        .about-closing {
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-top: 1px solid #e8e4de;
+        }
+
+        .about-closing h2 {
+            font-size: clamp(24px, 3vw, 38px);
+            font-weight: 700;
+            max-width: 520px;
+            line-height: 1.2;
+        }
+
+        .about-closing h2 span {
+            color: var(--accent, #E8442A);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 860px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .about-hero-img {
+                height: 360px;
+            }
+
+            .about-hero-img .img-overlay {
+                background: linear-gradient(to bottom, transparent 60%, #fff 100%);
+            }
+
+            .about-hero-content {
+                padding: 40px 24px;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat-item:nth-child(3) {
+                border-right: 1px solid #e8e4de;
+            }
+
+            .about-story {
+                grid-template-columns: 1fr;
+            }
+
+            .story-left {
+                border-right: none;
+                border-bottom: 1px solid #e8e4de;
+                padding: 48px 24px;
+            }
+
+            .story-right {
+                padding: 48px 24px;
+            }
+
+            .credentials-section {
+                padding: 48px 24px;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-closing {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 48px 24px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-item {
+                padding: 24px 20px;
+            }
+
+            .stat-item:nth-child(3) {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="#">URBANTIC</a>
+
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/property-list-page/property.html">Properties</a></li>
+                <li><a href="/about.html" class="active">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+
+            <a class="main-button" id="nav-cta-button" href="/property-list-page/property.html">Get Property List</a>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-drawer" id="mobile-drawer">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/property-list-page/property.html">Properties</a></li>
+                    <li><a href="/about.html" class="active">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <a class="main-button" href="/property-list-page/property.html">Get Property List</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="about-page">
+
+        <!-- ── HERO SPLIT ── -->
+        <section class="about-hero">
+            <div class="about-hero-img">
+                <img src="/contents/img/Sudipta Bhattacharya img.png" alt="Sudipta Bhattacharya" />
+                <div class="img-overlay"></div>
+            </div>
+            <div class="about-hero-content">
+                <p class="about-eyebrow">Real Estate Agent · Kolkata</p>
+                <h1>Sudipta<br>Bhattacharya</h1>
+                <p class="subtitle">Helping Kolkata find its perfect home since 2016</p>
+                <p class="bio">
+                    As a real estate agent based in Kolkata, I help buyers and renters find well-located, verified
+                    residential properties with clarity and confidence. I focus on honest guidance, transparent pricing,
+                    and personal support throughout the property search and site visit process.
+                </p>
+                <div class="about-cta-row">
+                    <a class="main-button about-butt" href="/contact.html">Contact Me</a>
+                    <a class="main-button about-butt btn-ghost " href="tel:+919800000000">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path
+                                d="M2 2h3l1.5 3.5-1.5 1a8 8 0 0 0 3 3l1-1.5L12.5 9v3A1.5 1.5 0 0 1 11 13.5C5.2 13.5.5 8.8.5 3A1.5 1.5 0 0 1 2 1.5V2z"
+                                stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+                        </svg>
+                        Call Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STATS BAR ── -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">8<span>+</span></div>
+                <div class="stat-label">Years in Kolkata Real Estate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">340<span>+</span></div>
+                <div class="stat-label">Properties Closed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98<span>%</span></div>
+                <div class="stat-label">Client Satisfaction Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12<span>+</span></div>
+                <div class="stat-label">Neighbourhoods Covered</div>
+            </div>
+        </div>
+
+        <!-- ── STORY + VALUES ── -->
+        <section class="about-story">
+            <div class="story-left">
+                <p class="section-label">My Story</p>
+                <h2>Real estate done the honest way</h2>
+                <p>
+                    I started in real estate because I saw how stressful and opaque property decisions could be for
+                    ordinary buyers and renters. People were being shown properties that didn't match their needs, given
+                    inflated prices, and left to navigate complex paperwork alone.
+                </p>
+                <p>
+                    Over the past 8 years across New Town, Salt Lake, South Kolkata, and the EM Bypass corridor, I've
+                    built a practice rooted in one principle — put the client first, every time. That means showing you
+                    only verified properties, being upfront about pricing, and staying with you from the first site
+                    visit to the final handover.
+                </p>
+                <p>
+                    I'm RERA registered, work with a vetted network of legal and financial professionals, and personally
+                    accompany every client on site visits. No shortcuts. No hidden agendas.
+                </p>
+            </div>
+
+            <div class="story-right">
+                <p class="section-label">What I Stand For</p>
+                <div class="values-list">
+                    <div class="value-item">
+                        <div class="value-number">01</div>
+                        <div class="value-text">
+                            <h4>Verified Properties Only</h4>
+                            <p>Every listing I show has been personally inspected and legally verified. No phantom
+                                listings, no outdated inventory.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">02</div>
+                        <div class="value-text">
+                            <h4>Transparent Pricing</h4>
+                            <p>You see the real price upfront. No hidden broker fees, no inflated quotes. What I quote
+                                is what you pay.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">03</div>
+                        <div class="value-text">
+                            <h4>Personal Site Visits</h4>
+                            <p>I accompany every client on every visit. No sending assistants. Your time is valuable — I
+                                treat it that way.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">04</div>
+                        <div class="value-text">
+                            <h4>End-to-End Support</h4>
+                            <p>From the first call to key handover — legal checks, negotiations, paperwork — I stay
+                                involved throughout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CREDENTIALS ── -->
+        <section class="credentials-section">
+            <p class="section-label">Credentials & Expertise</p>
+            <h2>Why clients trust me</h2>
+            <div class="credentials-grid">
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="2" y="2" width="16" height="16" rx="3" stroke="#E8442A" stroke-width="1.4" />
+                            <path d="M6 10l3 3 5-5" stroke="#E8442A" stroke-width="1.4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h4>RERA Registered</h4>
+                    <p>Fully registered under the West Bengal Real Estate Regulatory Authority. Every transaction is
+                        compliant and protected.</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2L3 6v7c0 4 3.5 7.4 7 8.2C17.5 20.4 17 16 17 13V6L10 2z" stroke="#E8442A"
+                                stroke-width="1.4" fill="none" />
+                        </svg>
+                    </div>
+                    <h4>Local Market Expert</h4>
+                    <p>8+ years of active transactions across New Town, Salt Lake, Ballygunge, Alipore, Rajarhat, and
+                        the EM Bypass corridor.</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="#E8442A" stroke-width="1.4" />
+                            <path d="M10 6v4l3 2" stroke="#E8442A" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h4>8 Years of Experience</h4>
+                    <p>Started in 2016, built through consistent client referrals and zero-compromise service. No
+                        shortcuts, ever.</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3 10h14M10 3v14" stroke="#E8442A" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h4>340+ Deals Closed</h4>
+                    <p>Across residential, commercial, rental, and resale — from first-time buyers to seasoned
+                        investors.</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M17 8c0 5.5-7 10-7 10S3 13.5 3 8a7 7 0 0 1 14 0z" stroke="#E8442A"
+                                stroke-width="1.4" fill="none" />
+                            <circle cx="10" cy="8" r="2.5" stroke="#E8442A" stroke-width="1.4" />
+                        </svg>
+                    </div>
+                    <h4>12+ Neighbourhoods</h4>
+                    <p>Deep knowledge of pricing trends, infrastructure development, and liveability across every major
+                        Kolkata zone.</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 4h5v5H4zM11 4h5v5h-5zM4 11h5v5H4zM11 11h5v5h-5z" stroke="#E8442A"
+                                stroke-width="1.4" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h4>Legal & Finance Network</h4>
+                    <p>A vetted network of property lawyers, loan advisors, and documentation specialists — all under
+                        one roof.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="about-closing">
+            <h2>Ready to find your<br><span>perfect property?</span></h2>
+            <div class="about-cta-row">
+                <a class="main-button about-butt" href="/contact.html">Get in Touch</a>
+                <a class="btn-ghost main-button about-butt" href="/property-list-page/property.html">View Properties</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <a class="logo" href="/">URBANTIC</a>
+        <p>Urbantic Buildings is a Kolkata-based real estate service dedicated to helping buyers and renters find the
+            right residential properties with confidence. With strong local market knowledge and carefully verified
+            listings, we focus on connecting clients with well-located homes that match their needs and lifestyle.</p>
+        <div class="socials">
+            <a href="#"><img src="/contents/img/whatsapp-icon.png" alt="whatsapp-icon"></a>
+            <a href="#"><img src="/contents/img/insta-icon.png" alt="Instagram-icon"></a>
+            <a href="#"><img src="/contents/img/email-icon.png" alt="email-icon"></a>
+        </div>
+        <div class="footer-info">
+            <h4>2026 The <span>URBANTIC</span>. All right reserved.</h4>
+            <a target="_blank" href="https://frostela.com/">
+                <h4 style="text-align:right;">Site By <span>Crafted Frostela</span></h4>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>

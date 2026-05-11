@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URBANTIC | Contact</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        :root{
+            --Gothic :"GothicA1", Arial, Helvetica, sans-serif;
+            --Ubuntu :"Ubuntu", Arial, Helvetica, sans-serif;
+            --Rawgly :"Rawgly", Arial, Helvetica, sans-serif;
+            --helva : Arial, Helvetica, sans-serif;
+        }
+        /* ── CONTACT HERO ── */
+        .contact-hero {
+            padding: 80px 60px 56px;
+            border-bottom: 1px solid #e8e4de;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .contact-hero-left .eyebrow {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent, #E8442A);
+            margin-bottom: 16px;
+            font-family: var(--helva);
+        }
+
+        .contact-hero-left h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 600;
+            line-height: 1.05;
+            max-width: 560px;
+            font-family: var(--Gothic);
+            overflow: visible;
+        }
+
+        .contact-hero-left h1 span {
+            color: var(--accent, #E8442A);
+        }
+
+        .contact-hero-right {
+            max-width: 320px;
+            flex-shrink: 0;
+        }
+
+        .contact-hero-right p {
+            font-size: 1rem;
+            line-height: 1.3;
+            color: #000000;
+            font-family: var(--helva);
+        }
+
+        /* ── MAIN LAYOUT ── */
+        .contact-body {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            min-height: 70vh;
+        }
+
+        /* ── FORM SIDE ── */
+        .contact-form-wrap {
+            padding: 64px 60px;
+            border-right: 1px solid #e8e4de;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            font-family: var(--helva);
+        }
+
+        .form-group label span {
+            color: var(--accent, #E8442A);
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0ddd8;
+            border-radius: 8px;
+            font-family: var(--helva);
+            font-size: 14px;
+            color: #1a1a1a;
+            background: #fff;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, .06);
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: var(--accent, #E8442A);
+            box-shadow: 0 0 0 3px rgba(232, 68, 35, .08);
+        }
+
+        .error-msg {
+            font-size: 12px;
+            color: var(--accent, #E8442A);
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        .optional-tag {
+            font-size: 10px;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 0;
+            text-transform: none;
+            margin-left: 6px;
+        }
+
+        /* Submit button */
+        .submit-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-submit {
+            padding: 14px 36px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #333;
+        }
+
+        .btn-submit:active {
+            transform: scale(.98);
+        }
+
+        .btn-submit:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+        }
+
+        .btn-submit svg {
+            transition: transform .2s;
+        }
+
+        .btn-submit:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ── SUCCESS STATE ── */
+        .success-overlay {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 16px;
+            padding: 48px 0 0;
+            animation: fadeUp .4s ease both;
+        }
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-overlay h3 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .success-overlay p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .success-overlay a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent, #E8442A);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* ── INFO SIDE ── */
+        .contact-info-wrap {
+            padding: 64px 48px;
+            background: #f7f5f2;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .contact-info-wrap .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent, #E8442A);
+            margin-bottom: 24px;
+        }
+
+        .agent-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 0 28px;
+            border-bottom: 1px solid #e0ddd8;
+            margin-bottom: 32px;
+        }
+
+        .agent-card-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #e0ddd8;
+        }
+
+        .agent-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .agent-card-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .agent-card-role {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0ddd8;
+        }
+
+        .contact-method:last-child {
+            border-bottom: none;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #e0ddd8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .method-icon svg {
+            color: var(--accent, #E8442A);
+        }
+
+        .method-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 4px;
+        }
+
+        .method-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .method-note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .contact-areas {
+            margin-top: 36px;
+            padding-top: 32px;
+            border-top: 1px solid #e0ddd8;
+        }
+
+        .contact-areas h4 {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 16px;
+        }
+
+        .area-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .area-tag {
+            padding: 6px 14px;
+            background: #fff;
+            border: 1px solid #e0ddd8;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .contact-hero {
+                padding: 48px 24px 40px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-hero-right {
+                max-width: 100%;
+            }
+
+            .contact-body {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-wrap {
+                padding: 40px 24px;
+                border-right: none;
+                border-bottom: 1px solid #e8e4de;
+            }
+
+            .contact-info-wrap {
+                padding: 40px 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="#">URBANTIC</a>
+
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/property-list-page/property.html">Properties</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html" class="active">Contact</a></li>
+            </ul>
+
+            <a class="main-button" id="nav-cta-button" href="/property-list-page/property.html">Get Property List</a>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-drawer" id="mobile-drawer">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/property-list-page/property.html">Properties</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html" class="active">Contact</a></li>
+                </ul>
+                <a class="main-button" href="/property-list-page/property.html">Get Property List</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ── HERO ── -->
+        <div class="contact-hero">
+            <div class="contact-hero-left">
+                <p class="eyebrow">Get in Touch</p>
+                <h1>Let's find your<br><span>perfect property.</span></h1>
+            </div>
+            <div class="contact-hero-right">
+                <p>Fill in your details and I'll get back to you within a few hours. Whether you're buying, renting, or
+                    just exploring — no pressure, no sales tactics.</p>
+            </div>
+        </div>
+
+        <!-- ── BODY ── -->
+        <div class="contact-body">
+
+            <!-- FORM -->
+            <div class="contact-form-wrap" style="font-family: var(--helva);">
+
+                <!-- Form itself -->
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name <span>*</span></label>
+                            <input type="text" id="fname" placeholder="Rahul Sharma" />
+                            <span class="error-msg" id="fname-err">Please enter your name.</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number <span>*</span></label>
+                            <input type="tel" id="phone" placeholder="+91 98000 00000" />
+                            <span class="error-msg" id="phone-err">Please enter a valid phone number.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address <span>*</span></label>
+                        <input type="email" id="email" placeholder="rahul@email.com" />
+                        <span class="error-msg" id="email-err">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>I'm Looking For <span>*</span></label>
+                        <select id="looking">
+                            <option value="" disabled selected>Select a property type…</option>
+                            <optgroup label="Residential — Rent">
+                                <option value="rent-1bhk">1 BHK Apartment for Rent</option>
+                                <option value="rent-2bhk">2 BHK Apartment for Rent</option>
+                                <option value="rent-3bhk">3 BHK Apartment for Rent</option>
+                                <option value="rent-villa">Villa / Independent House for Rent</option>
+                            </optgroup>
+                            <optgroup label="Residential — Buy">
+                                <option value="buy-1bhk">1 BHK Apartment to Buy</option>
+                                <option value="buy-2bhk">2 BHK Apartment to Buy</option>
+                                <option value="buy-3bhk">3 BHK Apartment to Buy</option>
+                                <option value="buy-villa">Villa / Independent House to Buy</option>
+                                <option value="buy-new">New Launch / Under Construction</option>
+                            </optgroup>
+                            <optgroup label="Commercial">
+                                <option value="office-rent">Office Space for Rent</option>
+                                <option value="office-buy">Office Space to Buy</option>
+                                <option value="retail-rent">Retail / Shop for Rent</option>
+                                <option value="retail-buy">Retail / Shop to Buy</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option value="sell">I Want to Sell / List My Property</option>
+                                <option value="invest">Investment Advice</option>
+                                <option value="other">Something Else</option>
+                            </optgroup>
+                        </select>
+                        <span class="error-msg" id="looking-err">Please select what you're looking for.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Message
+                            <span class="optional-tag">(optional)</span>
+                        </label>
+                        <textarea id="message"
+                            placeholder="Tell me more — preferred location, budget, timeline, anything that helps…"></textarea>
+                    </div>
+
+                    <div class="submit-row">
+                        <button type="submit" class="btn-submit" id="submitBtn" disabled>
+                            Send Message
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <span id="form-hint" style="font-size:12px;color:#aaa;">Fill required fields to send</span>
+                    </div>
+                </form>
+
+                <!-- Success state -->
+                <div class="success-overlay" id="successOverlay">
+                    <div class="success-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Message sent!</h3>
+                    <p>Thanks for reaching out. Sudipta will get back to you within a few hours. In the meantime, feel
+                        free to browse available properties.</p>
+                    <a onclick="resetForm()">Send another message →</a>
+                </div>
+            </div>
+
+            <!-- INFO SIDE -->
+            <div class="contact-info-wrap" style="font-family: var(--helva);">
+                <p class="section-label">Your Agent</p>
+
+                <div class="agent-card">
+                    <div class="agent-card-img">
+                        <img src="/contents/img/Sudipta Bhattacharya img.png" alt="Sudipta Bhattacharya" />
+                    </div>
+                    <div>
+                        <div class="agent-card-name">Sudipta Bhattacharya</div>
+                        <div class="agent-card-role">Real Estate Agent · Kolkata</div>
+                    </div>
+                </div>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path
+                                    d="M2.5 2.5h4L8 6.5l-2 1.5a10 10 0 0 0 4 4l1.5-2 4 1.5v4A1.5 1.5 0 0 1 14 17C7.1 17 1 10.9 1 4A1.5 1.5 0 0 1 2.5 2.5z"
+                                    stroke="#E8442A" stroke-width="1.3" fill="none" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="method-label">Phone / WhatsApp</div>
+                            <div class="method-value">+91 98000 00000</div>
+                            <div class="method-note">Mon – Sat, 9am – 7pm</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <rect x="1" y="3.5" width="16" height="11" rx="2" stroke="#E8442A" stroke-width="1.3" />
+                                <path d="M1 6l8 5 8-5" stroke="#E8442A" stroke-width="1.3" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="method-label">Email</div>
+                            <div class="method-value">sudipta@urbantic.in</div>
+                            <div class="method-note">Usually replies within 3 hours</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path
+                                    d="M9 1.5a6.5 6.5 0 0 1 6.5 6.5c0 5-6.5 9.5-6.5 9.5S2.5 13 2.5 8A6.5 6.5 0 0 1 9 1.5z"
+                                    stroke="#E8442A" stroke-width="1.3" fill="none" />
+                                <circle cx="9" cy="8" r="2" stroke="#E8442A" stroke-width="1.3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="method-label">Office</div>
+                            <div class="method-value">New Town, Kolkata</div>
+                            <div class="method-note">Serving all major zones</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-areas">
+                    <h4>Areas Covered</h4>
+                    <div class="area-tags">
+                        <span class="area-tag">New Town</span>
+                        <span class="area-tag">Salt Lake</span>
+                        <span class="area-tag">Rajarhat</span>
+                        <span class="area-tag">Ballygunge</span>
+                        <span class="area-tag">Alipore</span>
+                        <span class="area-tag">Park Street</span>
+                        <span class="area-tag">Tollygunge</span>
+                        <span class="area-tag">Lake Gardens</span>
+                        <span class="area-tag">EM Bypass</span>
+                        <span class="area-tag">Behala</span>
+                        <span class="area-tag">Dum Dum</span>
+                        <span class="area-tag">Jodhpur Park</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a class="logo" href="#">URBANTIC</a>
+        <p>Urbantic Buildings is a Kolkata-based real estate service dedicated to helping buyers and renters find the
+            right residential properties with confidence. With strong local market knowledge and carefully verified
+            listings, we focus on connecting clients with well-located homes that match their needs and lifestyle.
+            Our approach is built on transparency, clear communication, and personalized assistance throughout the
+            entire process—from discovering suitable properties to arranging site visits and guiding clients toward
+            informed decisions.
+        </p>
+        <div class="socials">
+            <a href="#"><img src="/contents/img/whatsapp-icon.png" alt="whatsapp-icon"></a>
+            <a href="#"><img src="/contents/img/insta-icon.png" alt="Instagram-icon"></a>
+            <a href="#"><img src="/contents/img/email-icon.png" alt="email-icon"></a>
+        </div>
+        <div class="footer-info">
+            <h4>2026 The <span>URBANTIC</span>. All right reserved.</h4>
+            <a target="_blank" href="https://frostela.com/">
+                <h4 style="text-align: right;">Site By <span>Crafted Frostela</span></h4>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script>
+        // ── Lenis ──
+        const lenis = new Lenis({ autoRaf: true });
+
+        // ── Burger ──
+        const burger = document.getElementById('burger-btn');
+        const drawer = document.getElementById('mobile-drawer');
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('open');
+            drawer.classList.toggle('open');
+        });
+
+        // ── Form logic ──
+        const fname = document.getElementById('fname');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        const looking = document.getElementById('looking');
+        const message = document.getElementById('message');
+        const submitBtn = document.getElementById('submitBtn');
+        const formHint = document.getElementById('form-hint');
+
+        const required = [fname, phone, email, looking];
+
+        function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+        function isValidPhone(v) { return /^[\d\s\+\-\(\)]{7,}$/.test(v.trim()); }
+
+        function checkReady() {
+            const ready =
+                fname.value.trim().length > 0 &&
+                isValidPhone(phone.value) &&
+                isValidEmail(email.value) &&
+                looking.value !== '';
+
+            submitBtn.disabled = !ready;
+            formHint.textContent = ready ? '' : 'Fill required fields to send';
+        }
+
+        required.forEach(el => el.addEventListener('input', checkReady));
+        looking.addEventListener('change', checkReady);
+
+        // Inline validation on blur
+        fname.addEventListener('blur', () => {
+            const err = document.getElementById('fname-err');
+            if (!fname.value.trim()) { fname.classList.add('error'); err.classList.add('show'); }
+            else { fname.classList.remove('error'); err.classList.remove('show'); }
+        });
+
+        phone.addEventListener('blur', () => {
+            const err = document.getElementById('phone-err');
+            if (!isValidPhone(phone.value)) { phone.classList.add('error'); err.classList.add('show'); }
+            else { phone.classList.remove('error'); err.classList.remove('show'); }
+        });
+
+        email.addEventListener('blur', () => {
+            const err = document.getElementById('email-err');
+            if (!isValidEmail(email.value)) { email.classList.add('error'); err.classList.add('show'); }
+            else { email.classList.remove('error'); err.classList.remove('show'); }
+        });
+
+        looking.addEventListener('blur', () => {
+            const err = document.getElementById('looking-err');
+            if (!looking.value) { looking.classList.add('error'); err.classList.add('show'); }
+            else { looking.classList.remove('error'); err.classList.remove('show'); }
+        });
+
+        // Submit
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (submitBtn.disabled) return;
+
+            // Fake send — just swap views
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending…';
+
+            setTimeout(() => {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('successOverlay').classList.add('show');
+            }, 800);
+        });
+
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('successOverlay').classList.remove('show');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+            formHint.textContent = 'Fill required fields to send';
+        }
+    </script>
+</body>
+
+</html>
