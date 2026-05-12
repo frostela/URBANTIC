@@ -13,12 +13,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <style>
-        :root{
-            --Gothic :"GothicA1", Arial, Helvetica, sans-serif;
-            --Ubuntu :"Ubuntu", Arial, Helvetica, sans-serif;
-            --Rawgly :"Rawgly", Arial, Helvetica, sans-serif;
-            --helva : Arial, Helvetica, sans-serif;
+        :root {
+            --Gothic: "GothicA1", Arial, Helvetica, sans-serif;
+            --Ubuntu: "Ubuntu", Arial, Helvetica, sans-serif;
+            --Rawgly: "Rawgly", Arial, Helvetica, sans-serif;
+            --helva: Arial, Helvetica, sans-serif;
         }
+
         /* ── CONTACT HERO ── */
         .contact-hero {
             padding: 80px 60px 56px;
@@ -482,7 +483,7 @@
     <main>
 
         <!-- ── HERO ── -->
-        <div class="contact-hero">
+        <div class="contact-hero reveal">
             <div class="contact-hero-left">
                 <p class="eyebrow">Get in Touch</p>
                 <h1>Let's find your<br><span>perfect property.</span></h1>
@@ -494,7 +495,7 @@
         </div>
 
         <!-- ── BODY ── -->
-        <div class="contact-body">
+        <div class="contact-body reveal">
 
             <!-- FORM -->
             <div class="contact-form-wrap" style="font-family: var(--helva);">
@@ -671,7 +672,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer class="reveal">
         <a class="logo" href="#">URBANTIC</a>
         <p>Urbantic Buildings is a Kolkata-based real estate service dedicated to helping buyers and renters find the
             right residential properties with confidence. With strong local market knowledge and carefully verified
@@ -782,6 +783,22 @@
             submitBtn.innerHTML = `Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
             formHint.textContent = 'Fill required fields to send';
         }
+
+        // Reveal animation
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        reveals.forEach((el) => observer.observe(el));
     </script>
 </body>
 
